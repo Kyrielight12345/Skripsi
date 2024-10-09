@@ -1,0 +1,68 @@
+package com.siakadtpq_server.tpq_server.models;
+
+import java.sql.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "tb_santri")
+public class Santri {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_santri", length = 5)
+    private Integer id;
+
+    @Column(name = "nama_santri", nullable = false, length = 25)
+    private String name;
+
+    @Column(name = "alamat", nullable = false, length = 50)
+    private String alamat;
+
+    @Column(name = "tempat_lahir", nullable = false, length = 50)
+    private String tempat_lahir;
+
+    @Column(name = "tanggal_lahir", nullable = false)
+    private Date tanggal_lahir;
+
+    @Column(name = "tanggal_bergabung", nullable = false)
+    private Date tanggal_bergabung;
+
+    @OneToMany(mappedBy = "santri")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<Progress> progress;
+
+    @OneToMany(mappedBy = "santri")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<Spp> spp;
+
+    @OneToMany(mappedBy = "santri")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<Nilai> nilai;
+
+    @ManyToOne
+    @JoinColumn(name = "id_jilid")
+    private Jilid jilid;
+
+    @OneToOne
+    @JoinColumn(name = "id_user", nullable = true)
+    private User user;
+}
