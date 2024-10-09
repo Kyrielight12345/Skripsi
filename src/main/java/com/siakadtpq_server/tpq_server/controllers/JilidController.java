@@ -11,42 +11,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.siakadtpq_server.tpq_server.models.Kelas;
-import com.siakadtpq_server.tpq_server.services.KelasService;
+import com.siakadtpq_server.tpq_server.models.Jilid;
+import com.siakadtpq_server.tpq_server.services.JilidService;
 
 import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/kelas")
-public class KelasController {
+@RequestMapping("/jilid")
+public class JilidController {
 
-    public KelasService kelasService;
+    public JilidService jilidService;
 
     @GetMapping
-    public List<Kelas> getAll() {
-        return kelasService.getAll();
+    public List<Jilid> getAll() {
+        return jilidService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Kelas getById(@PathVariable Integer id) {
-        return kelasService.getById(id);
+    public Jilid getById(@PathVariable Integer id) {
+        return jilidService.getById(id);
     }
 
     @PostMapping("/create")
-    public Kelas create(@RequestBody Kelas kelas) {
-        return kelasService.create(kelas);
+    public Jilid create(@RequestBody Jilid jilid) {
+        return jilidService.create(jilid);
 
     }
 
     @PutMapping("/{id}")
-    public Kelas update(@PathVariable Integer id, @RequestBody Kelas kelas) {
-        return kelasService.update(id, kelas);
+    public Jilid update(@PathVariable Integer id, @RequestBody Jilid jilid) {
+        return jilidService.update(id, jilid);
     }
 
     @DeleteMapping("/{id}")
-    public Kelas delete(@PathVariable Integer id) {
-        return kelasService.delete(id);
+    public Jilid delete(@PathVariable Integer id) {
+        return jilidService.delete(id);
     }
 
 }
