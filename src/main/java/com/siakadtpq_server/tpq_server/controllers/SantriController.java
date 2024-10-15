@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.siakadtpq_server.tpq_server.models.Santri;
@@ -31,9 +30,24 @@ public class SantriController {
         return santriService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Santri getById(@PathVariable Integer id) {
+        return santriService.getById(id);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<Santri> create(@RequestBody Detail_SantriRequest detailUserRequest) {
         Santri createdSantri = santriService.create(detailUserRequest);
         return ResponseEntity.ok(createdSantri);
+    }
+
+    @PutMapping("/{id}")
+    public Santri update(@PathVariable Integer id, @RequestBody Santri santri) {
+        return santriService.update(id, santri);
+    }
+
+    @DeleteMapping("/{id}")
+    public Santri delete(@PathVariable Integer id) {
+        return santriService.delete(id);
     }
 }

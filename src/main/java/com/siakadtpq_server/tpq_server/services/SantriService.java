@@ -55,9 +55,15 @@ public class SantriService {
     }
 
     public Santri delete(Integer id) {
-        Santri santri = getById(id);
-        santriRepository.delete(santri);
-        return santri;
+        try {
+            Santri santri = getById(id);
+            santriRepository.delete(santri);
+            return santri;
+        } catch (Exception e) {
+            System.out.println("Error during delete: " + e.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to delete Santri");
+        }
+
     }
 
     public List<Santri> searchByName(String name) {
