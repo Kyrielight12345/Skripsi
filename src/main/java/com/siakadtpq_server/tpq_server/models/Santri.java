@@ -1,6 +1,7 @@
 package com.siakadtpq_server.tpq_server.models;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -68,4 +69,10 @@ public class Santri {
     @JoinColumn(name = "id_user", nullable = true)
     @JsonProperty(access = Access.WRITE_ONLY)
     private User user;
+
+    @Column(name = "is_deleted", nullable = false)
+    private boolean deleted = false;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
 }

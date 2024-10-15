@@ -47,7 +47,8 @@ public class SantriController {
     }
 
     @DeleteMapping("/{id}")
-    public Santri delete(@PathVariable Integer id) {
-        return santriService.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        santriService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
