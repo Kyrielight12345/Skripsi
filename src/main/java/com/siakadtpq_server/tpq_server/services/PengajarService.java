@@ -4,7 +4,7 @@ import com.siakadtpq_server.tpq_server.models.Pengajar;
 import com.siakadtpq_server.tpq_server.models.User;
 import com.siakadtpq_server.tpq_server.repositories.PengajarRepository;
 import com.siakadtpq_server.tpq_server.repositories.UserRepository;
-import com.siakadtpq_server.tpq_server.models.dto.request.Detail_SantriRequest;
+import com.siakadtpq_server.tpq_server.models.dto.request.Detail_PengajarRequest;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,7 +36,7 @@ public class PengajarService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pengajar not found!!!"));
     }
 
-    public Pengajar create(Detail_SantriRequest detailUserRequest) {
+    public Pengajar create(Detail_PengajarRequest detailUserRequest) {
         Pengajar pengajar = modelMapper.map(detailUserRequest, Pengajar.class);
 
         User user = new User();

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.siakadtpq_server.tpq_server.models.Pengajar;
-import com.siakadtpq_server.tpq_server.models.dto.request.Detail_SantriRequest;
+import com.siakadtpq_server.tpq_server.models.dto.request.Detail_PengajarRequest;
 import com.siakadtpq_server.tpq_server.services.PengajarService;
 
 import lombok.AllArgsConstructor;
@@ -37,7 +37,7 @@ public class PengajarController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Pengajar> create(@RequestBody Detail_SantriRequest detailUserRequest) {
+    public ResponseEntity<Pengajar> create(@RequestBody Detail_PengajarRequest detailUserRequest) {
         Pengajar createdPengajar = pengajarService.create(detailUserRequest);
         return ResponseEntity.ok(createdPengajar);
     }
