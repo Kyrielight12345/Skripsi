@@ -8,9 +8,10 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.stereotype.Service;
 
 import com.tpq.clinet.models.Spp;
-
+@Service
 public class SppService {
     @Value("${server.base.url}/cart_product")
     private String url;

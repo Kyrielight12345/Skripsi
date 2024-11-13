@@ -8,10 +8,11 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.stereotype.Service;
 
 import com.tpq.clinet.models.Santri;
 import com.tpq.clinet.models.dto.request.Detail_SantriRequest;
-
+@Service
 public class SantriService {
     @Value("${server.base.url}/cart_product")
     private String url;

@@ -8,10 +8,12 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.stereotype.Service;
 
 import com.tpq.clinet.models.Pengajar;
 import com.tpq.clinet.models.dto.request.Detail_PengajarRequest;
 
+@Service
 public class PengajarService {
     @Value("${server.base.url}/cart_product")
     private String url;

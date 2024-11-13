@@ -8,9 +8,11 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.stereotype.Service;
 
 import com.tpq.clinet.models.Progress;
 
+@Service
 public class ProgressService {
     @Value("${server.base.url}/cart_product")
     private String url;
