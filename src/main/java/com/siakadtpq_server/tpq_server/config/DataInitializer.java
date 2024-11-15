@@ -16,7 +16,7 @@ public class DataInitializer {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
             if (userRepository.count() == 0) {
-                User user = new User(null, "SuperUser", passwordEncoder.encode("SuperUser"), "Kepala TPQ", null,
+                User user = new User(null, "admin", passwordEncoder.encode("admin"), "kepala", null,
                         null);
 
                 userRepository.save(user);
