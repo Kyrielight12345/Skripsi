@@ -25,17 +25,20 @@ public class AuthService {
   private String url;
 
   @Autowired
-  private RestTemplate restTamplate;
+  private RestTemplate restTemplate; // Fixed typo from restTamplate to restTemplate
 
   public Boolean login(LoginRequest loginRequest) {
     try {
-      ResponseEntity<LoginResponse> response = restTamplate.exchange(
+      // Send a POST request to the login URL
+      ResponseEntity<LoginResponse> response = restTemplate.exchange(
           url,
           HttpMethod.POST,
           new HttpEntity<>(loginRequest),
           LoginResponse.class);
 
+      // Check if the response is successful
       if (response.getStatusCode() == HttpStatus.OK) {
+        // Set the principle (authentication) with the returned login response
         setPrinciple(response.getBody(), loginRequest.getPassword());
         return true;
       }
@@ -47,14 +50,20 @@ public class AuthService {
   }
 
   public void setPrinciple(LoginResponse response, String password) {
-    List<SimpleGrantedAuthority> authorities = Collections.singletonList(
-        new SimpleGrantedAuthority(response.getRole()));
+    // Ensure the role is prefixed with "ROLE_" as expected by Spring Security
+    String role = "ROLE_" + response.getRole().toUpperCase();
 
+    // Create a list of authorities (roles) for the authenticated user
+    List<SimpleGrantedAuthority> authorities = Collections.singletonList(
+        new SimpleGrantedAuthority(role));
+
+    // Create the authentication token with username, password, and authorities
     UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
         response.getUsername(),
         password,
         authorities);
 
+    // Set the authentication token into the SecurityContext
     SecurityContextHolder.getContext().setAuthentication(token);
   }
 }

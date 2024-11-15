@@ -1,0 +1,74 @@
+<div id="sidebar" th:fragment="sidebar">
+    <div class="sidebar-wrapper active">
+        <div class="sidebar-header position-relative">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="logo">
+                    <a href="index.html"><img th:src="@{/img/bg.jpg}" alt="Logo"></a>
+                </div>
+                <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
+                    <i class='bx bx-moon'></i>
+                    <div class="form-check form-switch fs-6">
+                        <input class="form-check-input me-0" type="checkbox" id="toggle-dark" style="cursor: pointer">
+                    </div>
+                    <i class='bx bx-sun'></i>
+                </div>
+                <div class="sidebar-toggler x">
+                    <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-menu">
+            <ul class="menu">
+                <li class="sidebar-title">Menu</li>
+                <li class="sidebar-item active">
+                    <a th:href="@{/home}" class="sidebar-link">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item has-sub">
+                    <a th:href="@{/santri}" class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>Santri</span>
+                    </a>
+                    <a th:href="@{/pengajar}" class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>Pengajar</span>
+                    </a>
+
+                    <!-- Only show "Kelas" for users with role "kepala" -->
+                    <a sec:authorize="hasRole('KEPALA')" th:href="@{/kelas}" class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>Kelas</span>
+                    </a>
+
+                    <!-- Only show "Jilid" for users with role "kepala" -->
+                    <a sec:authorize="hasRole('KEPALA')" th:href="@{/jilid}" class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>Jilid</span>
+                    </a>
+
+                    <a th:href="@{/progress}" class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>Progress</span>
+                    </a>
+                    <a th:href="@{/spp}" class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>Spp</span>
+                    </a>
+                    <a th:href="@{/user}" class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>User</span>
+                    </a>
+                    <form action="#" th:action="@{/logout}" method="post" class="d-inline">
+                        <button type="submit" class="sidebar-link btn btn-link"
+                            style="border: none; background: none; padding: 0;">
+                            <i class="bi bi-stack"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
