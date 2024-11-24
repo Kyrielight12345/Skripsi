@@ -1,7 +1,9 @@
 package com.siakadtpq_server.tpq_server.controllers;
 
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.siakadtpq_server.tpq_server.models.Progress;
+import com.siakadtpq_server.tpq_server.models.Santri;
 import com.siakadtpq_server.tpq_server.services.ProgressService;
+import com.siakadtpq_server.tpq_server.services.SantriService;
 
 import lombok.AllArgsConstructor;
 
@@ -22,6 +26,7 @@ import lombok.AllArgsConstructor;
 public class ProgressController {
 
     public ProgressService progressService;
+    public SantriService santriService;
 
     @GetMapping
     public List<Progress> getAll() {
@@ -49,4 +54,15 @@ public class ProgressController {
         return progressService.delete(id);
     }
 
+    @GetMapping("/santri/{santriId}")
+    public List<Progress> getProgressBySantri(@PathVariable Integer santriId) {
+        Santri santri = santriService.getById(santriId);
+        return progressService.getBySantri(santri);
+    }
+
+    @GetMapping("/santri")
+    public ResponseEntity<Map<Integer, List<Progress>>> getAllGroupedBySantri() {
+        Map<Integer, List<Progress>> groupedProgress = progressService.getAllGroupedBySantri();
+        return ResponseEntity.ok(groupedProgress);
+    }
 }
