@@ -15,16 +15,25 @@
             </div>
             <div class="page-content">
                 <section class="row">
-
+                    <div class="stylish-text" style="margin-bottom: 35px;">
+                        <h4 class="nama">Nama : <span id="nama"></span>
+                        </h4>
+                        <h4 class="jilid">Jilid : <span id="jilid"></span>
+                        </h4>
+                        <h4 class="jilid" sec:authorize="hasRole('KEPALA')">Pengajar : <span id="pengajar"></span>
+                        </h4>
+                    </div>
+                    <br>
                     <div class="table-responsive justify-content-center text-center">
                         <table id="tabel-detail-progress"
                             class=" table border-0 star-student table-hover table-center mb-3 datatable striped">
                             <thead class="student-thread text-center">
                                 <tr>
                                     <th class="col-1 text-center">No</th>
-                                    <th class="col-2 text-center">Nama</th>
-                                    <th class="col-7 text-center">Halaman</th>
-                                    <th class="col-7 text-center">Keterangan</th>
+                                    <th class="col-3 text-center">Tanggal</th>
+                                    <th class="col-3 text-center">Halaman</th>
+                                    <th class="col-3 text-center">Keterangan</th>
+                                    <th class="col-2 text-center">Aksi</th>
                                 </tr>
                             </thead>
                         </table>
@@ -37,6 +46,8 @@
     <div layout:fragment="js">
         <script th:src="@{/js/progress.js}"></script>
     </div>
+
+
 </body>
 
 </html>

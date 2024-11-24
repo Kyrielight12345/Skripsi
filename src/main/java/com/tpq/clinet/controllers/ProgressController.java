@@ -2,7 +2,6 @@ package com.tpq.clinet.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
@@ -25,9 +24,9 @@ public class ProgressController {
         return "progress/index";
     }
 
-    @GetMapping("/santri/{id}")
-    public String getBySantri(Model model, @PathVariable Integer id) {
-        model.addAttribute("progress", progressService.getBySantri(id));
+    @GetMapping("/detail")
+    public String detailPage(Model model, Authentication auth) {
+        model.addAttribute("role", auth.getAuthorities());
         return "progress/detail";
     }
 }

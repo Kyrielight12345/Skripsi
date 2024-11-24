@@ -54,4 +54,9 @@ public class RestProgressController {
     public Map<Integer, List<Progress>> getAllGroupedBySantri() {
         return progressService.getAllGroupedBySantri();
     }
+
+    @GetMapping("/santri/{id}")
+    public List<Progress> getBysantri(@PathVariable Integer id) {
+        return progressService.getBySantri(id);
+    }
 }
