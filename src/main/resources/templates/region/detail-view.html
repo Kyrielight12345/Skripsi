@@ -1,0 +1,22 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<head>
+    <title>Detail Region</title>
+</head>
+
+<body>
+    <section class="container text-center content" layout:fragment="content">
+        <div class="card mt-5">
+            <h5 class="card-header fw-bold bg-secondary-subtle">Detail Region</h5>
+            <div class="card-body">
+                <h5 class="card-title">ID Region : <h22 th:text="${region.id}"></h22>
+                </h5>
+                <p class="card-text">Region Name : <h22 th:text="${region.name}"></h22>
+                </p>
+                <a th:href="@{/region}" class="btn btn-secondary">Back</a>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

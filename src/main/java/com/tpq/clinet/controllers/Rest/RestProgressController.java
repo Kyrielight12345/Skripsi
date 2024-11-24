@@ -1,6 +1,7 @@
 package com.tpq.clinet.controllers.Rest;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/Rest/progress")
+@RequestMapping("/api/progress")
 public class RestProgressController {
 
     public ProgressService progressService;
@@ -49,4 +50,8 @@ public class RestProgressController {
         return progressService.delete(id);
     }
 
+    @GetMapping("/santri")
+    public Map<Integer, List<Progress>> getAllGroupedBySantri() {
+        return progressService.getAllGroupedBySantri();
+    }
 }

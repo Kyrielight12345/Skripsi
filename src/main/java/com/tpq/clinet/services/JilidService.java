@@ -14,7 +14,7 @@ import com.tpq.clinet.models.Jilid;
 
 @Service
 public class JilidService {
-    @Value("${server.base.url}/cart_product")
+    @Value("${server.base.url}/jilid")
     private String url;
 
     @Autowired

@@ -15,7 +15,7 @@ import com.tpq.clinet.models.dto.request.Detail_PengajarRequest;
 
 @Service
 public class PengajarService {
-    @Value("${server.base.url}/cart_product")
+    @Value("${server.base.url}/pengajar")
     private String url;
 
     @Autowired

@@ -1,0 +1,16 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<head>
+    <title>Guntur</title>
+</head>
+
+<body>
+    <section layout:fragment="content">
+        <div class="content" style="margin-top: 100px;">
+            <h1>Welcome <span th:text="${name}"></span></h1>
+            <p>Metrodata Academy - Full stack Java Developer.</p>
+        </div>
+    </section>
+</body>
+
+</html>

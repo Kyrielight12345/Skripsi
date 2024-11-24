@@ -14,7 +14,7 @@ import com.tpq.clinet.models.Nilai;
 
 @Service
 public class NilaiService {
-    @Value("${server.base.url}/cart_product")
+    @Value("${server.base.url}/nilai")
     private String url;
 
     @Autowired

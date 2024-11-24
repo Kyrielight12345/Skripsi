@@ -1,0 +1,161 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<head>
+    <title>Region</title>
+</head>
+
+<body>
+    <section layout:fragment="content">
+        <div class="content container">
+            <div class="page-header mt-5 mb-4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h1 class="page-title fw-bold">Region</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table comman-shadow">
+                        <div class="card-body">
+                            <div class="page-header">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h3 class="page-title mb-4">List Of Region</h3>
+                                    </div>
+                                    <div class="col-auto text-end float-end ms-auto mb-4 download-grp">
+                                        <button type="button" class="btn btn-outline-primary me-2"
+                                            data-bs-toggle="modal" data-bs-target="#create"> <i class="fas fa-plus"></i>
+                                            Add Region
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive justify-content-center text-center">
+                                <table id="table-region"
+                                    class="table border-0 star-student table-hover table-center mb-3 datatable striped">
+                                    <thead class="student-thread text-center">
+                                        <tr>
+                                            <th class="col-2 text-center">No</th>
+                                            <th class="col-4 text-center">Name</th>
+                                            <th class="col-6 text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal create -->
+        <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="createLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 fw-bold" id="createLabel">
+                            Add Region
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <div class="input-group my-2">
+                                <span class="input-group-text fw-bold bg-secondary-subtle" id="name">Name</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="name" id="create-name" required />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button id="create-region" type="submit" class="btn btn-success">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- modal-detail -->
+        <div class="modal fade" id="detail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="createLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 fw-bold" id="createLabel">
+                            Detail Region
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card me-4">
+                            <div class="card-body">
+                                <h5 class="card-title">ID Region: <span id="detail-id"></span></h5>
+                                <p class="card-text">Region Name: <span id="detail-name"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- modal-update -->
+        <div class="modal fade" id="update" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="createLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 fw-bold" id="createLabel">
+                            Update Region
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <div class="card me-4">
+                                <div class="card-body">
+                                    <h6>ID Region: <span id="up-detail-id"></span></h6>
+                                    <input type="hidden" id="update-id" />
+                                    <div class="input-group mb-4 mt-2">
+                                        <span class="input-group-text fw-bold bg-secondary-subtle" id="name">Name</span>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="name" id="update-name" required />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button id="update-re" type="submit" class="btn btn-success">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- js local -->
+    <div layout:fragment="js">
+        <script th:src="@{/js/region.js}"></script>
+    </div>
+</body>
+
+</html>

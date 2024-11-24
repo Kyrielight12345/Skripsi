@@ -18,7 +18,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/Rest/spp")
+@RequestMapping("/api/spp")
 public class RestSppController {
 
     public SppService sppService;

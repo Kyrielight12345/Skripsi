@@ -11,9 +11,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.stereotype.Service;
 
 import com.tpq.clinet.models.Spp;
+
 @Service
 public class SppService {
-    @Value("${server.base.url}/cart_product")
+    @Value("${server.base.url}/spp")
     private String url;
 
     @Autowired

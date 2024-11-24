@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/Rest/user")
+@RequestMapping("/api/user")
 public class RestUserController {
 
     public UserService userService;

@@ -1,6 +1,7 @@
 package com.tpq.clinet.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +15,7 @@ import com.tpq.clinet.models.Progress;
 
 @Service
 public class ProgressService {
-    @Value("${server.base.url}/cart_product")
+    @Value("${server.base.url}/progress")
     private String url;
 
     @Autowired
@@ -62,6 +63,26 @@ public class ProgressService {
                 HttpMethod.DELETE,
                 null,
                 Progress.class)
+                .getBody();
+    }
+
+    public List<Progress> getBySantri(Integer santriId) {
+        return restTemplate.exchange(
+                url.concat("/santri/" + santriId),
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Progress>>() {
+                })
+                .getBody();
+    }
+
+    public Map<Integer, List<Progress>> getAllGroupedBySantri() {
+        return restTemplate.exchange(
+                url.concat("/santri"),
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<Map<Integer, List<Progress>>>() {
+                })
                 .getBody();
     }
 }

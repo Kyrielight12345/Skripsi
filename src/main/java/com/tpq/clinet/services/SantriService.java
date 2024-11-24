@@ -12,21 +12,23 @@ import org.springframework.stereotype.Service;
 
 import com.tpq.clinet.models.Santri;
 import com.tpq.clinet.models.dto.request.Detail_SantriRequest;
+
 @Service
 public class SantriService {
-    @Value("${server.base.url}/cart_product")
+    @Value("${server.base.url}/santri")
     private String url;
 
     @Autowired
     private RestTemplate restTemplate;
 
     public List<Santri> getAll() {
-        return restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<Santri>>() {
-                })
+        return restTemplate
+                .exchange(
+                        url,
+                        HttpMethod.GET,
+                        null,
+                        new ParameterizedTypeReference<List<Santri>>() {
+                        })
                 .getBody();
     }
 

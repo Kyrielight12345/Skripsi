@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/Rest/pengajar")
+@RequestMapping("/api/pengajar")
 public class RestPengajarController {
 
     public PengajarService pengajarService;

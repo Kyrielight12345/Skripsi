@@ -18,7 +18,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/Rest/nilai")
+@RequestMapping("/api/nilai")
 public class RestNilaiController {
 
     public NilaiService nilaiService;

@@ -14,7 +14,7 @@ import com.tpq.clinet.models.Kelas;
 
 @Service
 public class KelasService {
-    @Value("${server.base.url}/cart_product")
+    @Value("${server.base.url}/kelas")
     private String url;
 
     @Autowired

@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/Rest/santri")
+@RequestMapping("/api/santri")
 public class RestSantriController {
 
     public SantriService santriService;

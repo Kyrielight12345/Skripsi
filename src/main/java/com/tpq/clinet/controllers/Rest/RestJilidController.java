@@ -18,7 +18,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/Rest/jilid")
+@RequestMapping("/api/jilid")
 public class RestJilidController {
 
     public JilidService jilidService;

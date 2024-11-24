@@ -14,7 +14,7 @@ import com.tpq.clinet.models.User;
 
 @Service
 public class UserService {
-    @Value("${server.base.url}/cart_product")
+    @Value("${server.base.url}/user")
     private String url;
 
     @Autowired

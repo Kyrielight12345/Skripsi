@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #ebebeb;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo {
+  display: flex;
+  align-items: center;
+  margin: 0 24px;
+}
+
+.logo .logo-name {
+  color: #000000;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+nav .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200px;
+  padding: 20px 0;
+  background-color: #ebebeb;
+  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  margin-top: 20px;
+  margin-left: 200px;
+  padding: 20px;
+}
+
+.sidebar .sidebar-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 30px 16px;
+}
+
+.sidebar-content .lists {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lists .nav-link {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding: 14px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.lists .nav-link:hover {
+  background-color: #4070f4;
+}
+
+.nav-link .icon {
+  margin-right: 14px;
+  font-size: 20px;
+  color: #000000;
+}
+
+.nav-link .link {
+  font-size: 16px;
+  color: #000000;
+  font-weight: 400;
+}
+
+/* table */
+
+table.table td h2 a:hover {
+  color: #3d5ee1;
+}
+table.table td h2 span {
+  color: #888;
+  display: block;
+  font-size: 12px;
+  margin-top: 3px;
+}
+.table thead tr th {
+  font-weight: 600;
+}
+.table tbody tr {
+  border-bottom: 1px solid #dee2e6;
+}
+.table.table-center td,
+.table.table-center th {
+  vertical-align: middle;
+}
+.table-hover tbody tr:hover {
+  background-color: #f7f7f7;
+}
+.table-hover tbody tr:hover td {
+  color: #474648;
+}
+.table-striped thead tr {
+  border-color: transparent;
+}
+.striped tbody tr {
+  border-color: transparent;
+}
+
+.card-text1 {
+  margin-top: -10px;
+}
+
+.cen {
+  margin-left: 80px;
+}
+
+.th {
+  text-align: center;
+}
+
+.top-navbar {
+  background: #ebebeb;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
+
+.top-navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-navbar .logo-name {
+  color: #000000;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.logout {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.logout form {
+  margin: 0;
+}
+
+.nav {
+  position: fixed;
+  top: 60px;
+  left: 0;
+}
