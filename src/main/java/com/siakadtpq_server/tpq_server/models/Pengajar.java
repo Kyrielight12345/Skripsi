@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,6 +41,10 @@ public class Pengajar {
 
     @Column(name = "alamat", nullable = false, length = 50)
     private String alamat;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "jenis_kelamin", nullable = false, length = 10)
+    private JenisKelamin jenisKelamin;
 
     @Column(name = "tempat_lahir", nullable = false, length = 50)
     private String tempat_lahir;

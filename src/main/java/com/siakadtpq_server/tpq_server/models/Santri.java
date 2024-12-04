@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -48,6 +50,10 @@ public class Santri {
 
     @Column(name = "tanggal_bergabung", nullable = false)
     private Date tanggal_bergabung;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "jenis_kelamin", nullable = false, length = 10)
+    private JenisKelamin jenisKelamin;
 
     @OneToMany(mappedBy = "santri")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

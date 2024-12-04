@@ -19,7 +19,6 @@ public interface ProgressRepository extends JpaRepository<Progress, Integer> {
 
     Collection<Progress> findByPengajar(Pengajar pengajar);
 
-    // Add this method for filtering by a list of Santris
     @Query("SELECT p FROM Progress p WHERE p.santri IN :santris")
     List<Progress> findBySantriIn(@Param("santris") List<Santri> santris);
 }

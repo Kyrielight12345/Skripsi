@@ -70,32 +70,26 @@ public class ProgressService {
         User currentUser = getCurrentUser();
 
         if ("santri".equals(currentUser.getRole())) {
-            // If logged in as Santri, group progress for that specific Santri
             Santri santri = currentUser.getSantri();
             return progressRepository.findBySantri(santri).stream()
                     .collect(Collectors.groupingBy(p -> p.getSantri().getId()));
         } else if ("pengajar".equals(currentUser.getRole())) {
-            // If logged in as Pengajar, filter progress by the 'Kelas' of the Pengajar
             Pengajar pengajar = currentUser.getPengajar();
             Kelas kelasPengajar = pengajar.getKelas();
 
             if (kelasPengajar != null) {
-                // Fetch Santri based on the Kelas Pengajar
                 List<Santri> santrisInKelas = santriRepository.findByDeletedFalseAndJilid_Kelas(kelasPengajar);
-                // Filter progress of Santris in the Pengajar's class (Kelas)
                 return progressRepository.findBySantriIn(santrisInKelas).stream()
                         .collect(Collectors.groupingBy(p -> p.getSantri().getId()));
             }
-            return Collections.emptyMap(); // Return empty if no kelas is associated
+            return Collections.emptyMap();
         } else {
-            // For other roles (e.g., Admin), return all progress entries grouped by Santri
             List<Progress> allProgress = progressRepository.findAll();
             return allProgress.stream()
                     .collect(Collectors.groupingBy(p -> p.getSantri().getId()));
         }
     }
 
-    // Helper method to get the currently logged-in user
     private User getCurrentUser() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByUsername(username)
