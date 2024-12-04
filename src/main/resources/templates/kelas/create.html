@@ -1,0 +1,96 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<body>
+    <section layout:fragment="content">
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Tambah Data Santri</h3>
+            </div>
+
+            <div class="page-content">
+                <section class="row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="form-santri">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="create-name" class="form-label">Nama</label>
+                                            <input type="text" id="create-name" name="name" class="form-control"
+                                                placeholder="Masukkan Nama" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-alamat" class="form-label">Alamat</label>
+                                            <textarea id="create-alamat" name="alamat" class="form-control"
+                                                placeholder="Masukkan Alamat" required></textarea>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-tempat-lahir" class="form-label">Tempat Lahir</label>
+                                            <input type="text" id="create-tempat-lahir" name="tempat_lahir"
+                                                class="form-control" placeholder="Masukkan Tempat Lahir" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="create-tanggal-lahir" class="form-label">Tanggal Lahir</label>
+                                            <input type="date" id="create-tanggal-lahir" name="tanggal_lahir"
+                                                class="form-control" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-tanggal-bergabung" class="form-label">Tanggal
+                                                Bergabung</label>
+                                            <input type="date" id="create-tanggal-bergabung" name="tanggal_bergabung"
+                                                class="form-control" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-jilid" class="form-label">Jilid</label>
+                                            <select id="create-jilid" name="jilid" class="form-control" required>
+                                                <option value="1">Jilid 1</option>
+                                                <option value="2">Jilid 2</option>
+                                                <option value="3">Jilid 3</option>
+                                                <option value="4">Jilid 4</option>
+                                                <option value="5">Jilid 5</option>
+                                                <option value="6">Jilid 6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <input type="hidden" id="create-role" name="role" class="form-control"
+                                                value="santri" readonly />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="bi bi-save"></i> Simpan
+                                            </button>
+                                            <a href="#" th:href="@{/santri}" class="btn btn-secondary">
+                                                <i class="bi bi-arrow-left"></i> Kembali
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <div layout:fragment="js">
+        <script th:src="@{/js/santri.js}"></script>
+    </div>
+</body>
+
+</html>

@@ -1,6 +1,7 @@
 package com.tpq.clinet.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -62,6 +63,26 @@ public class SppService {
                 HttpMethod.DELETE,
                 null,
                 Spp.class)
+                .getBody();
+    }
+
+    public List<Spp> getBySantri(Integer santriId) {
+        return restTemplate.exchange(
+                url.concat("/santri/" + santriId),
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Spp>>() {
+                })
+                .getBody();
+    }
+
+    public Map<Integer, List<Spp>> getAllGroupedBySantri() {
+        return restTemplate.exchange(
+                url.concat("/santri"),
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<Map<Integer, List<Spp>>>() {
+                })
                 .getBody();
     }
 }

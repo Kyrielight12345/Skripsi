@@ -2,10 +2,10 @@ var role = document.getElementById("role").getAttribute("data-role");
 console.log(role);
 
 $(document).ready(function () {
-  $("#tabel-progress").DataTable({
+  $("#tabel-nilai").DataTable({
     ajax: {
       method: "GET",
-      url: "api/progress/santri",
+      url: "api/nilai/santri",
       dataSrc: function (data) {
         console.log("Received Data: ", data);
 
@@ -46,7 +46,7 @@ $(document).ready(function () {
 });
 
 function navigateAndFetch(id) {
-  window.location.href = `/progress/detail?id=${id}`;
+  window.location.href = `/nilai/detail?id=${id}`;
 }
 
 function getById(id) {
@@ -54,15 +54,14 @@ function getById(id) {
 
   $.ajax({
     method: "GET",
-    url: window.location.origin + "/api/progress/santri/" + id,
+    url: window.location.origin + "/api/nilai/santri/" + id,
     success: function (data) {
       console.log("Fetched data:", data);
 
       $("#nama").text(data[0].santri.name);
       $("#jilid").text(data[0].santri.jilid.name);
-      $("#pengajar").text(data[0].pengajar.name);
 
-      $("#tabel-detail-progress").DataTable({
+      $("#tabel-detail-nilai").DataTable({
         data: data,
         columns: [
           {
@@ -72,13 +71,31 @@ function getById(id) {
             },
           },
           {
-            data: "tanggal_progress",
+            data: "al_harakat",
           },
           {
-            data: "halaman",
+            data: "makhraj",
           },
           {
-            data: "keterangan",
+            data: "imla",
+          },
+          {
+            data: "an_namroh",
+          },
+          {
+            data: "al_lafadz",
+          },
+          {
+            data: "tajwid",
+          },
+          {
+            data: "gharib",
+          },
+          {
+            data: "al_mad",
+          },
+          {
+            data: "tanggal_ujian",
           },
           {
             data: null,
@@ -89,6 +106,7 @@ function getById(id) {
                   <button type="button" class="btn btn-warning" onclick="navigateAndFetch(${data.santri.id})">
                     Update
                   </button>
+                   </button>
                    <button type="button" class="btn btn-danger" onclick="navigateAndFetch(${data.santri.id})">
                     Hapus
                   </button>

@@ -1,6 +1,7 @@
 package com.tpq.clinet.controllers.Rest;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,4 +50,13 @@ public class RestNilaiController {
         return nilaiService.delete(id);
     }
 
+    @GetMapping("/santri")
+    public Map<Integer, List<Nilai>> getAllGroupedBySantri() {
+        return nilaiService.getAllGroupedBySantri();
+    }
+
+    @GetMapping("/santri/{id}")
+    public List<Nilai> getBysantri(@PathVariable Integer id) {
+        return nilaiService.getBySantri(id);
+    }
 }

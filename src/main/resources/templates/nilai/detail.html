@@ -1,0 +1,56 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<body>
+    <section layout:fragment="content">
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Detail Nilai Santri</h3>
+                <span id="role" th:data-role="${role}"></span>
+            </div>
+            <div class="page-content">
+                <section class="row">
+                    <div class="stylish-text" style="margin-bottom: 35px;">
+                        <h4 class="nama">Nama : <span id="nama"></span>
+                        </h4>
+                        <h4 class="jilid">Jilid : <span id="jilid"></span>
+                    </div>
+                    <br>
+                    <div class="table-responsive justify-content-center text-center">
+                        <table id="tabel-detail-nilai"
+                            class=" table border-0 star-student table-hover table-center mb-3 datatable striped">
+                            <thead class="student-thread text-center">
+                                <tr>
+                                    <th class="col-1 text-center">No</th>
+                                    <th class="col-1 text-center">al_harakat</th>
+                                    <th class="col-1 text-center">makhraj</th>
+                                    <th class="col-1 text-center">imla</th>
+                                    <th class="col-1 text-center">an_namroh</th>
+                                    <th class="col-1 text-center">al_lafadz</th>
+                                    <th class="col-1 text-center">tajwid</th>
+                                    <th class="col-1 text-center">gharib</th>
+                                    <th class="col-1 text-center">al_mad</th>
+                                    <th class="col-2 text-center">Tanggal Ujian</th>
+                                    <th class="col-1 text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </section>
+    <div layout:fragment="js">
+        <script th:src="@{/js/nilai.js}"></script>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,6 +1,7 @@
 package com.tpq.clinet.controllers.Rest;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,4 +50,13 @@ public class RestSppController {
         return sppService.delete(id);
     }
 
+    @GetMapping("/santri")
+    public Map<Integer, List<Spp>> getAllGroupedBySantri() {
+        return sppService.getAllGroupedBySantri();
+    }
+
+    @GetMapping("/santri/{id}")
+    public List<Spp> getBysantri(@PathVariable Integer id) {
+        return sppService.getBySantri(id);
+    }
 }

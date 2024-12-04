@@ -2,10 +2,10 @@ var role = document.getElementById("role").getAttribute("data-role");
 console.log(role);
 
 $(document).ready(function () {
-  $("#tabel-progress").DataTable({
+  $("#tabel-spp").DataTable({
     ajax: {
       method: "GET",
-      url: "api/progress/santri",
+      url: "api/spp/santri",
       dataSrc: function (data) {
         console.log("Received Data: ", data);
 
@@ -46,7 +46,7 @@ $(document).ready(function () {
 });
 
 function navigateAndFetch(id) {
-  window.location.href = `/progress/detail?id=${id}`;
+  window.location.href = `/spp/detail?id=${id}`;
 }
 
 function getById(id) {
@@ -54,15 +54,14 @@ function getById(id) {
 
   $.ajax({
     method: "GET",
-    url: window.location.origin + "/api/progress/santri/" + id,
+    url: window.location.origin + "/api/spp/santri/" + id,
     success: function (data) {
       console.log("Fetched data:", data);
 
       $("#nama").text(data[0].santri.name);
       $("#jilid").text(data[0].santri.jilid.name);
-      $("#pengajar").text(data[0].pengajar.name);
 
-      $("#tabel-detail-progress").DataTable({
+      $("#tabel-detail-spp").DataTable({
         data: data,
         columns: [
           {
@@ -72,13 +71,13 @@ function getById(id) {
             },
           },
           {
-            data: "tanggal_progress",
+            data: "tanggal_bayar",
           },
           {
-            data: "halaman",
+            data: "jumlah_bayar",
           },
           {
-            data: "keterangan",
+            data: "pengajar.name",
           },
           {
             data: null,
@@ -89,6 +88,7 @@ function getById(id) {
                   <button type="button" class="btn btn-warning" onclick="navigateAndFetch(${data.santri.id})">
                     Update
                   </button>
+                    </button>
                    <button type="button" class="btn btn-danger" onclick="navigateAndFetch(${data.santri.id})">
                     Hapus
                   </button>
