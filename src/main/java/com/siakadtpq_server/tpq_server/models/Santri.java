@@ -67,7 +67,7 @@ public class Santri {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Nilai> nilai;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_jilid")
     private Jilid jilid;
 

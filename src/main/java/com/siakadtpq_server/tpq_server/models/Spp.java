@@ -1,9 +1,12 @@
 package com.siakadtpq_server.tpq_server.models;
 
 import java.sql.Date;
+import java.time.Month;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,6 +35,13 @@ public class Spp {
     @Column(name = "jumlah_bayar", nullable = false, length = 25)
     private Integer jumlah_bayar;
 
+    @Column(name = "bayar_bulan", nullable = false, length = 9)
+    @Enumerated(EnumType.STRING)
+    private Month bayar_bulan;
+
+    @Column(name = "bayar_tahun", nullable = false)
+    private Integer bayar_tahun;
+
     @ManyToOne
     @JoinColumn(name = "id_santri")
     private Santri santri;
@@ -39,5 +49,4 @@ public class Spp {
     @ManyToOne
     @JoinColumn(name = "id_pengajar")
     private Pengajar pengajar;
-
 }
