@@ -1,0 +1,24 @@
+<div id="navbar" th:fragment="navbar">
+    <nav class="navbar" style="height: 70px; padding: 0;">
+        <div class="container-fluid d-flex justify-content-between align-items-center" style="height: 100%;">
+            <a class="navbar-brand" href="#" style="font-size: 18px; line-height: 70px;">
+                <i class="bi bi-house-fill" style="font-size: 24px;"></i> Home
+            </a>
+            <div class="dropdown">
+                <button class="btn btn-link p-0 border-0 dropdown-toggle" id="logoDropdown" data-bs-toggle="dropdown"
+                    aria-expanded="false" style="margin-right: 30px;">
+                    <i class="bi bi-person-circle" style="font-size: 30px;"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="logoDropdown">
+                    <li><a sec:authorize="hasAnyRole('KEPALA','PENGAJAR')" class="dropdown-item"
+                            href="/profile">Profile</a></li>
+                    <form action="#" th:action="@{/logout}" method="post">
+                        <button type="submit" class="dropdown-item">
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

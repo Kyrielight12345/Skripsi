@@ -18,16 +18,6 @@ $(document).ready(function () {
         render: (data) => {
           return `
                   <div class="d-flex gap-3 justify-content-center">
-                    <!-- Button trigger modal detail -->
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#detail"
-                      onclick="getById(${data.id})"
-                    >
-                      Detail
-                    </button>
                     <!-- Button trigger modal update -->
                     <button
                       type="button"
@@ -53,5 +43,42 @@ $(document).ready(function () {
         },
       },
     ],
+  });
+});
+$("#form-kelas").on("submit", (event) => {
+  event.preventDefault();
+
+  let kelas = {
+    name: $("#create-kelas").val(),
+  };
+  console.log(kelas);
+
+  $.ajax({
+    method: "POST",
+    url: window.location.origin + "/api/kelas/create",
+    dataType: "JSON",
+    contentType: "application/json",
+    beforeSend: addCSRFToken(),
+    data: JSON.stringify(kelas),
+    success: (res) => {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Data Kelas berhasil disimpan!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      $("#form-santri")[0].reset();
+    },
+    error: (err) => {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Terjadi kesalahan!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      console.log(err);
+    },
   });
 });

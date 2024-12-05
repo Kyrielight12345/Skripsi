@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
 import lombok.AllArgsConstructor;
+
+import com.tpq.clinet.models.Kelas;
 import com.tpq.clinet.services.KelasService;
 
 @Controller
@@ -21,4 +23,8 @@ public class KelasController {
         return "kelas/index";
     }
 
+    @GetMapping("/create")
+    public String createView(Kelas kelas, Model model) {
+        return "kelas/create";
+    }
 }

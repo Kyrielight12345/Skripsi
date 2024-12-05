@@ -32,12 +32,10 @@ $(document).ready(function () {
             return `
               <div class="d-flex gap-3 justify-content-center">
                 <!-- Button trigger modal detail -->
-                <button
+              <button
                   type="button"
                   class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#detail"
-                  onclick="getById(${data.id})"
+                  onclick="navigateAndFetch(${data.id})"
                 >
                   Detail
                 </button>
@@ -82,6 +80,33 @@ $(document).ready(function () {
     ],
   });
 });
+function navigateAndFetch(id) {
+  window.location.href = `/santri/detail?id=${id}`;
+}
+
+function getById(id) {
+  console.log("Fetching details for ID:", id);
+
+  $.ajax({
+    method: "GET",
+    url: window.location.origin + "/api/santri/" + id,
+    dataType: "JSON",
+    contentType: "application/json",
+    success: function (data) {
+      var ttl = data.tempat_lahir + "/" + data.tanggal_lahir;
+      $("#nama").text(data.name);
+      $("#jilid").text(data.jilid.name);
+      $("#kelas").text(data.jilid.kelas.name);
+      $("#alamat").text(data.alamat);
+      $("#ttl").text(ttl);
+      $("#gender").text(data.jenisKelamin);
+      $("#masuk").text(data.tanggal_bergabung);
+    },
+    error: (err) => {
+      console.log(err);
+    },
+  });
+}
 
 $("#form-santri").on("submit", (event) => {
   event.preventDefault();
@@ -133,4 +158,15 @@ $("#form-santri").on("submit", (event) => {
       console.log(err);
     },
   });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const santriId = urlParams.get("id");
+
+  if (santriId) {
+    getById(santriId);
+  } else {
+    console.error("ID Santri tidak ditemukan di URL");
+  }
 });

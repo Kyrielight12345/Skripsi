@@ -28,4 +28,9 @@ public class SantriController {
     public String createView(Santri santri, Model model) {
         return "santri/create";
     }
+
+    @GetMapping("/detail")
+    public String detail(Santri santri, Model model) {
+        return "santri/detail";
+    }
 }

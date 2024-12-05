@@ -1,0 +1,136 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<head>
+    <title>Guntur</title>
+</head>
+
+<body>
+    <section layout:fragment="content">
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Detail Santri</h3>
+                <span id="role" th:data-role="${role}"></span>
+            </div>
+            <div class="page-content">
+                <section class="row">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4> <i class="bi bi-person-circle" style="font-size: 30px;"> </i><span id="nama"
+                                    style="margin-left: 30px;"></span>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-12 col-xl-5">
+                                <div class="card">
+                                    <div class="card-header" style="padding-bottom: 0px;">
+                                        <h4>Lainya</h4>
+                                    </div>
+                                    <hr>
+                                    <div class=" card-body">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <div class="d-flex align-items-center">
+                                                    <h5 class="mb-0 ms-3">Jilid</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <h5 class="mb-0 text-end"><span id="jilid"></span></h5>
+                                            </div>
+                                            <div class="col-12">
+                                                <div id="chart-europe"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <br>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <div class="d-flex align-items-center">
+                                                    <h5 class="mb-0 ms-3">Ruang Kelas</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <h5 class="mb-0 text-end"><span id="kelas"></span></h5>
+                                            </div>
+                                            <div class="col-12">
+                                                <div id="chart-indonesia"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="card">
+                                    <div class="card-header" style="padding-bottom: 0px;">
+                                        <h4>Biodata</h4>
+                                    </div>
+                                    <hr>
+                                    <div class="card-body" style="padding-bottom: 0px; margin-bottom: 0px;">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="font-bold ">Alamat</p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="col-auto">
+                                                            <p id="alamat"></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="col-5">
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="font-bold">Tempat/Tanggal Lahir</p>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <p id="ttl"></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class=" col-5">
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="font-bold">Jenis Kelamin</p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="col-auto">
+                                                            <p id="gender"></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="col-5">
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="font-bold ">Tanggal Masuk</p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="col-auto">
+                                                            <p id="masuk"></p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+    </section>
+    <div layout:fragment="js">
+        <script th:src="@{/js/santri.js}"></script>
+    </div>
+</body>
+
+</html>

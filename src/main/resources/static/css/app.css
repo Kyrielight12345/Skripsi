@@ -18055,7 +18055,7 @@ body .bi:before,
 .card .card-header h4,
 .card .card-header .h4 {
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 400;
 }
 .card .card-header ~ .card-body {
   padding-top: 0;
@@ -18580,6 +18580,13 @@ body .bi:before,
   background-color: #fff;
   bottom: 0;
   transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  outline: 2px solid #cbd6e2;
+  outline-offset: 0px;
+}
+.navbar {
+  background-color: #fff;
+  outline: 2px solid #cbd6e2;
+  outline-offset: 0px;
 }
 .sidebar-wrapper .sidebar-header {
   padding: 2rem 2rem 1rem;
@@ -18950,7 +18957,7 @@ body .bi:before,
 }
 .layout-horizontal .main-navbar .submenu .submenu-group {
   display: table-cell;
-  padding: 0.5rem 0.3rem 0.3rem 0.5rem;
+  /* padding: 0.5rem 0.3rem 0.3rem 0.5rem; */
   flex-wrap: wrap;
   max-height: 200px;
   min-width: 200px;
