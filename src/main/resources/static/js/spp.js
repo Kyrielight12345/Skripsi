@@ -77,6 +77,12 @@ function getById(id) {
             data: "jumlah_bayar",
           },
           {
+            data: null,
+            render: (data, type, row) => {
+              return `${row.bayar_bulan}  ${row.bayar_tahun}`;
+            },
+          },
+          {
             data: "pengajar.name",
           },
           {

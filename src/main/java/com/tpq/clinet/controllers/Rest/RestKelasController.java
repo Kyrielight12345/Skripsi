@@ -36,7 +36,6 @@ public class RestKelasController {
     @PostMapping("/create")
     public Kelas create(@RequestBody Kelas kelas) {
         return kelasService.create(kelas);
-
     }
 
     @PutMapping("/{id}")

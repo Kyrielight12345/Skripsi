@@ -14,15 +14,26 @@ import com.tpq.clinet.models.Kelas;
 
 @Service
 public class KelasService {
+
     @Value("${server.base.url}/kelas")
-    private String url;
+    private String baseUrl;
 
     @Autowired
     private RestTemplate restTemplate;
 
+    private String adjustUrl(String endpoint) {
+        if (endpoint == null || endpoint.isEmpty()) {
+            return baseUrl;
+        }
+        if (endpoint.startsWith("/")) {
+            return baseUrl.concat(endpoint);
+        }
+        return baseUrl + "/" + endpoint;
+    }
+
     public List<Kelas> getAll() {
         return restTemplate.exchange(
-                url,
+                adjustUrl(""),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Kelas>>() {
@@ -32,24 +43,25 @@ public class KelasService {
 
     public Kelas getById(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.GET,
-                null, Kelas.class,
-                id)
+                null,
+                Kelas.class)
                 .getBody();
     }
 
     public Kelas create(Kelas kelas) {
         return restTemplate.exchange(
-                url,
+                adjustUrl("create"),
                 HttpMethod.POST,
-                new HttpEntity<>(kelas), Kelas.class)
+                new HttpEntity<>(kelas),
+                Kelas.class)
                 .getBody();
     }
 
     public Kelas update(Integer id, Kelas kelas) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.PUT,
                 new HttpEntity<>(kelas),
                 Kelas.class)
@@ -58,7 +70,7 @@ public class KelasService {
 
     public Kelas delete(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.DELETE,
                 null,
                 Kelas.class)

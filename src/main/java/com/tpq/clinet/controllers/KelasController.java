@@ -27,4 +27,9 @@ public class KelasController {
     public String createView(Kelas kelas, Model model) {
         return "kelas/create";
     }
+
+    @GetMapping("/update")
+    public String detail(Kelas kelas, Model model) {
+        return "kelas/update";
+    }
 }
