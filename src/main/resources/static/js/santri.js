@@ -228,19 +228,17 @@ function deleteSantri(id) {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Ya, Hapus!",
+        confirmButtonText: "Ya",
       }).then((result) => {
         if (result.isConfirmed) {
           $.ajax({
             method: "Delete",
-            url: "api/country/" + id,
+            url: window.location.origin + "/api/santri/" + id,
             beforeSend: addCSRFToken(),
             success: function (res) {
-              Swal.fire(
-                "Deleted! " + res.name + " has been deleted.",
-                "success"
-              );
-              $("#tabel-country").DataTable().ajax.reload();
+              console.log(res);
+              Swal.fire(" Data Berhasil Dihapus.");
+              $("#tabel-santri").DataTable().ajax.reload();
             },
             error: function (err) {
               console.log(err);
@@ -248,8 +246,8 @@ function deleteSantri(id) {
           });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swal.fire({
-            title: "Cancelled",
-            text: "Your imaginary data is safe :)",
+            title: "batal",
+            text: res.name + " Tidak terhapus",
             icon: "error",
           });
         }

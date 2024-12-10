@@ -1,0 +1,106 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<body>
+    <section layout:fragment="content">
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Update Data Pengajar</h3>
+            </div>
+
+            <div class="page-content">
+                <section class="row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="edit-santri">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="edit-name" class="form-label">Nama</label>
+                                            <input type="text" id="edit-name" name="name" class="form-control"
+                                                placeholder="Masukkan Nama" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="edit-alamat" class="form-label">Alamat</label>
+                                            <textarea id="edit-alamat" name="alamat" class="form-control"
+                                                placeholder="Masukkan Alamat" required></textarea>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="edit-tempat-lahir" class="form-label">Tempat Lahir</label>
+                                            <input type="text" id="edit-tempat-lahir" name="tempat_lahir"
+                                                class="form-control" placeholder="Masukkan Tempat Lahir" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="edit-tanggal-lahir" class="form-label">Tanggal Lahir</label>
+                                            <input type="date" id="edit-tanggal-lahir" name="tanggal_lahir"
+                                                class="form-control" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="edit-tanggal-bergabung" class="form-label">Tanggal
+                                                Bergabung</label>
+                                            <input type="date" id="edit-tanggal-bergabung" name="tanggal_bergabung"
+                                                class="form-control" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="edit-kelas" class="form-label">kelas</label>
+                                            <select id="edit-kelas" name="kelas" class="form-control" required>
+                                                <option value="1">kelas 1</option>
+                                                <option value="2">kelas 2</option>
+                                                <option value="3">kelas 3</option>
+                                                <option value="4">kelas 4</option>
+                                                <option value="5">kelas 5</option>
+                                                <option value="6">kelas 6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="edit-jenis" class="form-label">Jenis Kelamin</label>
+                                            <select id="edit-jenis" name="jenis" class="form-control" required>
+                                                <option value="LAKI_LAKI">Laki Laki</option>
+                                                <option value="PEREMPUAN">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="hidden" id="edit-role" name="role" class="form-control"
+                                                value="pengajar" readonly />
+
+                                            <input type="hidden" id="edit-id" name="role" class="form-control"
+                                                readonly />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="bi bi-save"></i> Simpan
+                                            </button>
+                                            <a href="#" th:href="@{/santri}" class="btn btn-secondary">
+                                                <i class="bi bi-arrow-left"></i> Kembali
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <div layout:fragment="js">
+        <script th:src="@{/js/pengajar.js}"></script>
+    </div>
+</body>
+
+</html>

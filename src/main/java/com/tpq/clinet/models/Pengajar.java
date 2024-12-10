@@ -19,6 +19,7 @@ public class Pengajar {
     private String tempat_lahir;
     private Date tanggal_lahir;
     private Date tanggal_bergabung;
+    private JenisKelamin JenisKelamin;
     private List<Progress> progress;
     private List<Spp> spp;
     private Kelas kelas;

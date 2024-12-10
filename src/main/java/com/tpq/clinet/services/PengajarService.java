@@ -16,14 +16,24 @@ import com.tpq.clinet.models.dto.request.Detail_PengajarRequest;
 @Service
 public class PengajarService {
     @Value("${server.base.url}/pengajar")
-    private String url;
+    private String baseUrl;
 
     @Autowired
     private RestTemplate restTemplate;
 
+    private String adjustUrl(String endpoint) {
+        if (endpoint == null || endpoint.isEmpty()) {
+            return baseUrl;
+        }
+        if (endpoint.startsWith("/")) {
+            return baseUrl.concat(endpoint);
+        }
+        return baseUrl + "/" + endpoint;
+    }
+
     public List<Pengajar> getAll() {
         return restTemplate.exchange(
-                url,
+                adjustUrl(""),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Pengajar>>() {
@@ -33,7 +43,7 @@ public class PengajarService {
 
     public Pengajar getById(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.GET,
                 null, Pengajar.class,
                 id)
@@ -42,7 +52,7 @@ public class PengajarService {
 
     public Pengajar create(Detail_PengajarRequest detailUserRequest) {
         return restTemplate.exchange(
-                url,
+                adjustUrl("create"),
                 HttpMethod.POST,
                 new HttpEntity<>(detailUserRequest), Pengajar.class)
                 .getBody();
@@ -50,7 +60,7 @@ public class PengajarService {
 
     public Pengajar update(Integer id, Pengajar pengajar) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.PUT,
                 new HttpEntity<>(pengajar),
                 Pengajar.class)
@@ -59,7 +69,7 @@ public class PengajarService {
 
     public Pengajar delete(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.DELETE,
                 null,
                 Pengajar.class)
