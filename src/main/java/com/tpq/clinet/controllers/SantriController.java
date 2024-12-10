@@ -25,12 +25,18 @@ public class SantriController {
     }
 
     @GetMapping("/create")
-    public String createView(Santri santri, Model model) {
+    public String create(Model model) {
+        model.addAttribute("Santri", santriService.getAll());
         return "santri/create";
     }
 
     @GetMapping("/detail")
     public String detail(Santri santri, Model model) {
         return "santri/detail";
+    }
+
+    @GetMapping("/update")
+    public String update(Santri santri, Model model) {
+        return "santri/update";
     }
 }

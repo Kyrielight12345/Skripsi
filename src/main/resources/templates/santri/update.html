@@ -10,7 +10,7 @@
             </header>
 
             <div class="page-heading">
-                <h3>Tambah Data Santri</h3>
+                <h3>Update Data Santri</h3>
             </div>
 
             <div class="page-content">
@@ -18,40 +18,40 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <form id="form-santri">
+                                <form id="edit-santri">
                                     <div class="row mb-3">
                                         <div class="col-md-4">
-                                            <label for="create-name" class="form-label">Nama</label>
-                                            <input type="text" id="create-name" name="name" class="form-control"
+                                            <label for="edit-name" class="form-label">Nama</label>
+                                            <input type="text" id="edit-name" name="name" class="form-control"
                                                 placeholder="Masukkan Nama" required />
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="create-alamat" class="form-label">Alamat</label>
-                                            <textarea id="create-alamat" name="alamat" class="form-control"
+                                            <label for="edit-alamat" class="form-label">Alamat</label>
+                                            <textarea id="edit-alamat" name="alamat" class="form-control"
                                                 placeholder="Masukkan Alamat" required></textarea>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="create-tempat-lahir" class="form-label">Tempat Lahir</label>
-                                            <input type="text" id="create-tempat-lahir" name="tempat_lahir"
+                                            <label for="edit-tempat-lahir" class="form-label">Tempat Lahir</label>
+                                            <input type="text" id="edit-tempat-lahir" name="tempat_lahir"
                                                 class="form-control" placeholder="Masukkan Tempat Lahir" required />
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <div class="col-md-4">
-                                            <label for="create-tanggal-lahir" class="form-label">Tanggal Lahir</label>
-                                            <input type="date" id="create-tanggal-lahir" name="tanggal_lahir"
+                                            <label for="edit-tanggal-lahir" class="form-label">Tanggal Lahir</label>
+                                            <input type="date" id="edit-tanggal-lahir" name="tanggal_lahir"
                                                 class="form-control" required />
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="create-tanggal-bergabung" class="form-label">Tanggal
+                                            <label for="edit-tanggal-bergabung" class="form-label">Tanggal
                                                 Bergabung</label>
-                                            <input type="date" id="create-tanggal-bergabung" name="tanggal_bergabung"
+                                            <input type="date" id="edit-tanggal-bergabung" name="tanggal_bergabung"
                                                 class="form-control" required />
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="create-jilid" class="form-label">Jilid</label>
-                                            <select id="create-jilid" name="jilid" class="form-control" required>
+                                            <label for="edit-jilid" class="form-label">Jilid</label>
+                                            <select id="edit-jilid" name="jilid" class="form-control" required>
                                                 <option value="1">Jilid 1</option>
                                                 <option value="2">Jilid 2</option>
                                                 <option value="3">Jilid 3</option>
@@ -64,20 +64,17 @@
 
                                     <div class="row mb-3">
                                         <div class="col-md-4">
-                                            <label for="create-jenis" class="form-label">Jenis Kelamin</label>
-                                            <select id="create-jenis" name="jenis" class="form-control" required>
+                                            <label for="edit-jenis" class="form-label">Jenis Kelamin</label>
+                                            <select id="edit-jenis" name="jenis" class="form-control" required>
                                                 <option value="LAKI_LAKI">Laki Laki</option>
                                                 <option value="PEREMPUAN">Perempuan</option>
                                             </select>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="create-email" class="form-label">Nama</label>
-                                            <input type="text" id="create-email" name="email" class="form-control"
-                                                placeholder="Masukkan email" required />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="hidden" id="create-role" name="role" class="form-control"
+                                            <input type="hidden" id="edit-role" name="role" class="form-control"
                                                 value="santri" readonly />
+                                            <input type="hidden" id="edit-id" name="role" class="form-control"
+                                                readonly />
                                         </div>
                                     </div>
 

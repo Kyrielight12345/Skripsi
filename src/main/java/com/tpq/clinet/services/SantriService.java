@@ -16,15 +16,25 @@ import com.tpq.clinet.models.dto.request.Detail_SantriRequest;
 @Service
 public class SantriService {
     @Value("${server.base.url}/santri")
-    private String url;
+    private String baseUrl;
 
     @Autowired
     private RestTemplate restTemplate;
 
+    private String adjustUrl(String endpoint) {
+        if (endpoint == null || endpoint.isEmpty()) {
+            return baseUrl;
+        }
+        if (endpoint.startsWith("/")) {
+            return baseUrl.concat(endpoint);
+        }
+        return baseUrl + "/" + endpoint;
+    }
+
     public List<Santri> getAll() {
         return restTemplate
                 .exchange(
-                        url,
+                        adjustUrl(""),
                         HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<List<Santri>>() {
@@ -34,7 +44,7 @@ public class SantriService {
 
     public Santri getById(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.GET,
                 null, Santri.class,
                 id)
@@ -43,7 +53,7 @@ public class SantriService {
 
     public Santri create(Detail_SantriRequest detailUserRequest) {
         return restTemplate.exchange(
-                url,
+                adjustUrl("create"),
                 HttpMethod.POST,
                 new HttpEntity<>(detailUserRequest), Santri.class)
                 .getBody();
@@ -51,7 +61,7 @@ public class SantriService {
 
     public Santri update(Integer id, Santri santri) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.PUT,
                 new HttpEntity<>(santri),
                 Santri.class)
@@ -60,7 +70,7 @@ public class SantriService {
 
     public Santri delete(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.DELETE,
                 null,
                 Santri.class)

@@ -1,7 +1,7 @@
-var role = document.getElementById("role").getAttribute("data-role");
-console.log(role);
-
 $(document).ready(function () {
+  var role = document.getElementById("role").getAttribute("data-role");
+  console.log(role);
+
   $("#tabel-santri").DataTable({
     ajax: {
       method: "GET",
@@ -43,9 +43,8 @@ $(document).ready(function () {
                 <button
                   type="button"
                   class="btn btn-warning"
-                  data-bs-toggle="modal"
-                  data-bs-target="#update"
-                  onclick="beforeUpdate(${data.id})"
+                    class="btn btn-warning"
+                     onclick="navigateUpdate(${data.id})"
                 >
                   Update
                 </button>
@@ -63,12 +62,10 @@ $(document).ready(function () {
             return `
               <div class="d-flex gap-3 justify-content-center">
                 <!-- Button trigger modal detail -->
-                <button
+               <button
                   type="button"
                   class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#detail"
-                  onclick="getById(${data.id})"
+                  onclick="navigateAndFetch(${data.id})"
                 >
                   Detail
                 </button>
@@ -100,37 +97,40 @@ $("#form-santri").on("submit", (event) => {
   };
   console.log(santriData);
 
-  // $.ajax({
-  //   method: "POST",
-  //   url: "/api/santri/create",
-  //   dataType: "JSON",
-  //   contentType: "application/json",
-  //   beforeSend: addCSRFToken(),
-  //   data: JSON.stringify(santriData),
-  //   success: (res) => {
-  //     Swal.fire({
-  //       position: "center",
-  //       icon: "success",
-  //       title: "Data Santri berhasil disimpan!",
-  //       showConfirmButton: false,
-  //       timer: 2000,
-  //     });
-  //     $("#form-santri")[0].reset();
-  //   },
-  //   error: (err) => {
-  //     Swal.fire({
-  //       position: "center",
-  //       icon: "error",
-  //       title: "Terjadi kesalahan!",
-  //       showConfirmButton: false,
-  //       timer: 2000,
-  //     });
-  //     console.log(err);
-  //   },
-  // });
+  $.ajax({
+    method: "POST",
+    url: "/api/santri/create",
+    dataType: "JSON",
+    contentType: "application/json",
+    beforeSend: addCSRFToken(),
+    data: JSON.stringify(santriData),
+    success: (res) => {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Data Santri berhasil disimpan!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      window.location.href = window.location.origin + "/santri";
+    },
+    error: (err) => {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Email Sudah Ada!!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      console.log(err);
+    },
+  });
 });
 function navigateAndFetch(id) {
   window.location.href = `/santri/detail?id=${id}`;
+}
+function navigateUpdate(id) {
+  window.location.href = `/santri/update?id=${id}`;
 }
 
 function getById(id) {
@@ -150,12 +150,61 @@ function getById(id) {
       $("#ttl").text(ttl);
       $("#gender").text(data.jenisKelamin);
       $("#masuk").text(data.tanggal_bergabung);
+
+      $("#edit-name").val(data.name);
+      $("#edit-alamat").val(data.alamat);
+      $("#edit-tempat-lahir").val(data.tempat_lahir);
+      $("#edit-tanggal-lahir").val(data.tanggal_lahir);
+      $("#edit-tanggal-bergabung").val(data.tanggal_bergabung);
+      $("#edit-jenis").val(data.jenisKelamin);
+      $("#edit-jilid").val(data.jilid.kelas.id);
+      $("#edit-id").val(data.id);
     },
     error: (err) => {
       console.log(err);
     },
   });
 }
+
+$("#edit-santri").on("submit", (event) => {
+  event.preventDefault();
+  let valueId = $("#edit-id").val();
+  let santriData = {
+    name: $("#edit-name").val(),
+    alamat: $("#edit-alamat").val(),
+    tempat_lahir: $("#edit-tempat-lahir").val(),
+    tanggal_lahir: $("#edit-tanggal-lahir").val(),
+    tanggal_bergabung: $("#edit-tanggal-bergabung").val(),
+    jenisKelamin: $("#edit-jenis").val(),
+    jilid: {
+      id: $("#edit-jilid").val(),
+    },
+  };
+  console.log(santriData);
+
+  $.ajax({
+    method: "PUT",
+    url: window.location.origin + "/api/santri/" + valueId,
+    dataType: "JSON",
+    contentType: "application/json",
+    beforeSend: addCSRFToken(),
+    data: JSON.stringify(santriData),
+    success: (res) => {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Data Santri berhasil diupdate!",
+        showConfirmButton: false,
+        timer: 2000,
+      }).then(() => {
+        window.location.href = window.location.origin + "/santri";
+      });
+    },
+    error: (err) => {
+      console.log("salah");
+    },
+  });
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);

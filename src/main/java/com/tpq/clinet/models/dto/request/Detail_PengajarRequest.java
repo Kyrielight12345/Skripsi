@@ -2,6 +2,7 @@ package com.tpq.clinet.models.dto.request;
 
 import java.sql.Date;
 
+import com.tpq.clinet.models.JenisKelamin;
 import com.tpq.clinet.models.Jilid;
 import com.tpq.clinet.models.Kelas;
 
@@ -20,6 +21,7 @@ public class Detail_PengajarRequest {
     private String tempat_lahir;
     private Date tanggal_lahir;
     private Date tanggal_bergabung;
+    private JenisKelamin jenisKelamin;
     private Kelas kelas;
     private Jilid jilid;
     private String username;

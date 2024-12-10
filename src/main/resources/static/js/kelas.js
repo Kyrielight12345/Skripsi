@@ -101,10 +101,7 @@ function deleteKelas(id) {
             url: window.location.origin + "/api/kelas/" + id,
             beforeSend: addCSRFToken(),
             success: function (res) {
-              Swal.fire(
-                "Deleted! " + res.name + " has been deleted.",
-                "success"
-              );
+              Swal.fire("Berhasil! " + res.name + " berhasil Dihapus.");
               $("#tabel-kelas").DataTable().ajax.reload();
             },
             error: function (err) {
@@ -113,8 +110,8 @@ function deleteKelas(id) {
           });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swal.fire({
-            title: "Cancelled",
-            text: "Your imaginary data is safe :)",
+            title: "batal",
+            text: res.name + " Tidak terhapus",
             icon: "error",
           });
         }

@@ -1,0 +1,71 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<body>
+    <section layout:fragment="content">
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Tambah Data Jilid</h3>
+            </div>
+
+            <div class="page-content">
+                <section class="row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="form-jilid">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="create-jilid" class="form-label">Nama Jilid</label>
+                                            <input type="text" id="create-jilid" name="name" class="form-control"
+                                                placeholder="Masukkan Nama" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="create-kelas" class="form-label">Kelas</label>
+                                            <select id="create-kelas" name="kelas" class="form-control">
+                                                <option value="1">Kelas A</option>
+                                                <option value="2">Kelas B</option>
+                                                <option value="3">Kelas C</option>
+                                                <option value="4">Kelas D</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <input type="hidden" id="create-role" name="role" class="form-control"
+                                                value="santri" readonly />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="bi bi-save"></i> Simpan
+                                            </button>
+                                            <a href="#" th:href="@{/jilid}" class="btn btn-secondary">
+                                                <i class="bi bi-arrow-left"></i> Kembali
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <div layout:fragment="js">
+        <script th:src="@{/js/jilid.js}"></script>
+    </div>
+</body>
+
+</html>

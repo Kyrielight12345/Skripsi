@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 
 import lombok.AllArgsConstructor;
 
+import com.tpq.clinet.models.Jilid;
 import com.tpq.clinet.services.JilidService;
 
 @Controller
@@ -22,4 +23,14 @@ public class JilidController {
         return "jilid/index";
     }
 
+    @GetMapping("/create")
+    public String create(Model model) {
+        model.addAttribute("jilid", jilidService.getAll());
+        return "jilid/create";
+    }
+
+    @GetMapping("/update")
+    public String detail(Jilid jilid, Model model) {
+        return "jilid/update";
+    }
 }

@@ -15,14 +15,24 @@ import com.tpq.clinet.models.Jilid;
 @Service
 public class JilidService {
     @Value("${server.base.url}/jilid")
-    private String url;
+    private String baseUrl;
 
     @Autowired
     private RestTemplate restTemplate;
 
+    private String adjustUrl(String endpoint) {
+        if (endpoint == null || endpoint.isEmpty()) {
+            return baseUrl;
+        }
+        if (endpoint.startsWith("/")) {
+            return baseUrl.concat(endpoint);
+        }
+        return baseUrl + "/" + endpoint;
+    }
+
     public List<Jilid> getAll() {
         return restTemplate.exchange(
-                url,
+                adjustUrl(""),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Jilid>>() {
@@ -32,7 +42,7 @@ public class JilidService {
 
     public Jilid getById(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.GET,
                 null, Jilid.class,
                 id)
@@ -41,7 +51,7 @@ public class JilidService {
 
     public Jilid create(Jilid jilid) {
         return restTemplate.exchange(
-                url,
+                adjustUrl("create"),
                 HttpMethod.POST,
                 new HttpEntity<>(jilid), Jilid.class)
                 .getBody();
@@ -49,7 +59,7 @@ public class JilidService {
 
     public Jilid update(Integer id, Jilid jilid) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.PUT,
                 new HttpEntity<>(jilid),
                 Jilid.class)
@@ -58,7 +68,7 @@ public class JilidService {
 
     public Jilid delete(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.DELETE,
                 null,
                 Jilid.class)
