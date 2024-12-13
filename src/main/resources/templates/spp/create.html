@@ -1,0 +1,95 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<body>
+    <section layout:fragment="content">
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Tambah Data SPP</h3>
+                <span id="role" th:data-role="${role}"></span>
+            </div>
+
+            <div class="page-content">
+                <section class="row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="form-spp">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="create-tanggal" class="form-label">Tanggal Bayar</label>
+                                            <input type="date" id="create-bayar" name="tanggal" class="form-control"
+                                                placeholder="" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-keterangan" class="form-label">Jumlah</label>
+                                            <input id="create-jumlah" name="keterangan" class="form-control"
+                                                placeholder="Masukan  keterangan" required></input>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-bulan" class="form-label">Bayar Untuk Bulan</label>
+                                            <select id="create-bulan" name="halaman" class="form-control" required>
+                                                <option value="1">JANUARI</option>
+                                                <option value="2">FEBRUARI</option>
+                                                <option value="3">MARET</option>
+                                                <option value="4">APRIL</option>
+                                                <option value="5">MEI</option>
+                                                <option value="6">JUNI</option>
+                                                <option value="7">JULI</option>
+                                                <option value="8">AGUSTUS</option>
+                                                <option value="9">SEPTEMBER</option>
+                                                <option value="10">OKTOBER</option>
+                                                <option value="11">NOVEMBER</option>
+                                                <option value="12">DESEMBER</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="create-bulan" class="form-label">Bayar Untuk Tahun</label>
+                                            <input type="text" id="create-tahun" name="halaman" class="form-control"
+                                                placeholder="Masukan bulan" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-santri" class="form-label">Santri</label>
+                                            <select id="create-santri" name="santri" class="form-control" required>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="hidden" id="create-role" name="role" class="form-control"
+                                                th:value="${role}" readonly />
+                                            <input type="hidden" id="create-related-id" name="relatedId"
+                                                class="form-control" th:value="${relatedId}" readonly />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="bi bi-save"></i> Simpan
+                                            </button>
+                                            <a href="#" th:href="@{/spp}" class="btn btn-secondary">
+                                                <i class="bi bi-arrow-left"></i> Kembali
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <div layout:fragment="js">
+        <script th:src="@{/js/spp.js}"></script>
+    </div>
+</body>
+
+</html>

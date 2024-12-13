@@ -16,14 +16,24 @@ import com.tpq.clinet.models.Nilai;
 @Service
 public class NilaiService {
     @Value("${server.base.url}/nilai")
-    private String url;
+    private String baseUrl;
 
     @Autowired
     private RestTemplate restTemplate;
 
+    private String adjustUrl(String endpoint) {
+        if (endpoint == null || endpoint.isEmpty()) {
+            return baseUrl;
+        }
+        if (endpoint.startsWith("/")) {
+            return baseUrl.concat(endpoint);
+        }
+        return baseUrl + "/" + endpoint;
+    }
+
     public List<Nilai> getAll() {
         return restTemplate.exchange(
-                url,
+                adjustUrl(""),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Nilai>>() {
@@ -33,7 +43,7 @@ public class NilaiService {
 
     public Nilai getById(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.GET,
                 null, Nilai.class,
                 id)
@@ -42,7 +52,7 @@ public class NilaiService {
 
     public Nilai create(Nilai nilai) {
         return restTemplate.exchange(
-                url,
+                adjustUrl("create"),
                 HttpMethod.POST,
                 new HttpEntity<>(nilai), Nilai.class)
                 .getBody();
@@ -50,7 +60,7 @@ public class NilaiService {
 
     public Nilai update(Integer id, Nilai nilai) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.PUT,
                 new HttpEntity<>(nilai),
                 Nilai.class)
@@ -59,7 +69,7 @@ public class NilaiService {
 
     public Nilai delete(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.DELETE,
                 null,
                 Nilai.class)
@@ -68,7 +78,7 @@ public class NilaiService {
 
     public List<Nilai> getBySantri(Integer santriId) {
         return restTemplate.exchange(
-                url.concat("/santri/" + santriId),
+                adjustUrl("/santri/" + santriId),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Nilai>>() {
@@ -78,7 +88,7 @@ public class NilaiService {
 
     public Map<Integer, List<Nilai>> getAllGroupedBySantri() {
         return restTemplate.exchange(
-                url.concat("/santri"),
+                adjustUrl("santri"),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<Map<Integer, List<Nilai>>>() {

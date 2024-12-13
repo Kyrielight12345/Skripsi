@@ -16,14 +16,24 @@ import com.tpq.clinet.models.Spp;
 @Service
 public class SppService {
     @Value("${server.base.url}/spp")
-    private String url;
+    private String baseUrl;
 
     @Autowired
     private RestTemplate restTemplate;
 
+    private String adjustUrl(String endpoint) {
+        if (endpoint == null || endpoint.isEmpty()) {
+            return baseUrl;
+        }
+        if (endpoint.startsWith("/")) {
+            return baseUrl.concat(endpoint);
+        }
+        return baseUrl + "/" + endpoint;
+    }
+
     public List<Spp> getAll() {
         return restTemplate.exchange(
-                url,
+                adjustUrl(""),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Spp>>() {
@@ -33,7 +43,7 @@ public class SppService {
 
     public Spp getById(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.GET,
                 null, Spp.class,
                 id)
@@ -42,7 +52,7 @@ public class SppService {
 
     public Spp create(Spp spp) {
         return restTemplate.exchange(
-                url,
+                adjustUrl("create"),
                 HttpMethod.POST,
                 new HttpEntity<>(spp), Spp.class)
                 .getBody();
@@ -50,7 +60,7 @@ public class SppService {
 
     public Spp update(Integer id, Spp spp) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.PUT,
                 new HttpEntity<>(spp),
                 Spp.class)
@@ -59,7 +69,7 @@ public class SppService {
 
     public Spp delete(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.DELETE,
                 null,
                 Spp.class)
@@ -68,7 +78,7 @@ public class SppService {
 
     public List<Spp> getBySantri(Integer santriId) {
         return restTemplate.exchange(
-                url.concat("/santri/" + santriId),
+                adjustUrl("/santri/" + santriId),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Spp>>() {
@@ -78,7 +88,7 @@ public class SppService {
 
     public Map<Integer, List<Spp>> getAllGroupedBySantri() {
         return restTemplate.exchange(
-                url.concat("/santri"),
+                adjustUrl("santri"),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<Map<Integer, List<Spp>>>() {

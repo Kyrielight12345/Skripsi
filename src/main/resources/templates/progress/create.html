@@ -1,0 +1,76 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<body>
+    <section layout:fragment="content">
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Tambah Data Progress</h3>
+                <span id="role" th:data-role="${role}"></span>
+            </div>
+
+            <div class="page-content">
+                <section class="row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="form-nilai">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="create-tanggal" class="form-label">Tanggal</label>
+                                            <input type="date" id="create-tanggal" name="tanggal" class="form-control"
+                                                placeholder="" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-keterangan" class="form-label">Keterangan</label>
+                                            <input id="create-keterangan" name="keterangan" class="form-control"
+                                                placeholder="Masukan  keterangan" required></input>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-halaman" class="form-label">halaman</label>
+                                            <input type="text" id="create-halaman" name="halaman" class="form-control"
+                                                placeholder="Masukan halaman" required />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="create-santri" class="form-label">Santri</label>
+                                            <select id="create-santri" name="santri" class="form-control" required>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="hidden" id="create-role" name="role" class="form-control"
+                                                value="pengajar" readonly />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="bi bi-save"></i> Simpan
+                                            </button>
+                                            <a href="#" th:href="@{/santri}" class="btn btn-secondary">
+                                                <i class="bi bi-arrow-left"></i> Kembali
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <div layout:fragment="js">
+        <script th:src="@{/js/progress.js}"></script>
+    </div>
+</body>
+
+</html>

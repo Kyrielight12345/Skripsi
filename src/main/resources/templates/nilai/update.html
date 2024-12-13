@@ -1,0 +1,112 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<body>
+    <section layout:fragment="content">
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Update Data Nilai</h3>
+                <span id="role" th:data-role="${role}"></span>
+
+            </div>
+
+            <div class="page-content">
+                <section class="row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="edit-nilai">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="create-al_harakat" class="form-label">al_harakat</label>
+                                            <input type="text" id="create-al_harakat" name="al_harakat"
+                                                class="form-control" placeholder="Masukan Nilai al_harakat" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-makhraj" class="form-label">makhraj</label>
+                                            <input id="create-makhraj" name="makhraj" class="form-control"
+                                                placeholder="Masukan Nilai makhraj" required></input>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-tempat-imla" class="form-label">imla</label>
+                                            <input type="text" id="create-imla" name="tempat_lahir" class="form-control"
+                                                placeholder="Masukan Nilai imla" required />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="create-an_namroh" class="form-label">an_namroh</label>
+                                            <input type="text" id="create-an_namroh" name="an_namroh"
+                                                class="form-control" placeholder="Masukan Nilai an_namroh" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-al_lafadz" class="form-label">al_lafadz</label>
+                                            <input id="create-al_lafadz" name="al_lafadz" class="form-control"
+                                                placeholder="Masukan Nilai al_lafadz" required></input>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-tempat-tajwid" class="form-label">tajwid</label>
+                                            <input type="text" id="create-tajwid" name="tajwid" class="form-control"
+                                                placeholder="Masukan Nilai tajwid" required />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="create-gharib" class="form-label">gharib</label>
+                                            <input type="text" id="create-gharib" name="gharib" class="form-control"
+                                                placeholder="Masukan Nilai gharib" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-al_mad" class="form-label">al_mad</label>
+                                            <input id="create-al_mad" name="al_mad" class="form-control"
+                                                placeholder="Masukan Nilai al_mad" required></input>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="create-tanggal-Ujian" class="form-label">Tanggal Ujian</label>
+                                            <input type="date" id="create-tanggal-Ujian" name="tanggal_Ujian"
+                                                class="form-control" required />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <input type="hidden" id="create-santri" name="tanggal_Ujian"
+                                                class="form-control" required />
+                                            <input type="hidden" id="create-nilai-id" name="tanggal_Ujian"
+                                                class="form-control" required />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="hidden" id="create-role" name="role" class="form-control"
+                                                value="pengajar" readonly />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="bi bi-save"></i> Simpan
+                                            </button>
+                                            <a href="#" th:href="@{/nilai}" class="btn btn-secondary">
+                                                <i class="bi bi-arrow-left"></i> Kembali
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <div layout:fragment="js">
+        <script th:src="@{/js/nilai.js}"></script>
+    </div>
+</body>
+
+</html>

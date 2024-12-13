@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
+import com.tpq.clinet.models.Spp;
 import com.tpq.clinet.services.SppService;
 
 import org.springframework.security.core.Authentication;
@@ -28,5 +29,16 @@ public class SppController {
     public String detailPage(Model model, Authentication auth) {
         model.addAttribute("role", auth.getAuthorities());
         return "spp/detail";
+    }
+
+    @GetMapping("/create")
+    public String create(Model model) {
+        model.addAttribute("progress", sppService.getAll());
+        return "spp/create";
+    }
+
+    @GetMapping("/update")
+    public String detail(Spp spp, Model model) {
+        return "spp/update";
     }
 }

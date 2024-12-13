@@ -23,9 +23,18 @@ public class HomeController {
                 .map(auth -> auth.getAuthority().replace("ROLE_", ""))
                 .orElse("USER");
 
+        Integer id = null;
+        if (authentication.getDetails() instanceof Map) {
+            @SuppressWarnings("unchecked")
+            Map<String, Object> details = (Map<String, Object>) authentication.getDetails();
+            id = (Integer) details.get("id");
+        }
+
         Map<String, Object> model = new HashMap<>();
         model.put("role", role);
+        model.put("id", id);
 
         return new ModelAndView("dashboard", model);
     }
+
 }

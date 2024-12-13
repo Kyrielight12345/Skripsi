@@ -102,7 +102,6 @@ function deleteKelas(id) {
             beforeSend: addCSRFToken(),
             success: function (res) {
               Swal.fire("Berhasil! " + res.name + " berhasil Dihapus.");
-              $("#tabel-kelas").DataTable().ajax.reload();
             },
             error: function (err) {
               console.log(err);

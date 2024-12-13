@@ -1,7 +1,9 @@
 package com.tpq.clinet.services;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,20 +52,22 @@ public class AuthService {
   }
 
   public void setPrinciple(LoginResponse response, String password) {
-    // Ensure the role is prefixed with "ROLE_" as expected by Spring Security
     String role = "ROLE_" + response.getRole().toUpperCase();
 
-    // Create a list of authorities (roles) for the authenticated user
+    Map<String, Object> details = new HashMap<>();
+    details.put("id", response.getId());
+    details.put("role", response.getRole());
+
     List<SimpleGrantedAuthority> authorities = Collections.singletonList(
         new SimpleGrantedAuthority(role));
 
-    // Create the authentication token with username, password, and authorities
     UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
         response.getUsername(),
         password,
         authorities);
+    token.setDetails(details);
 
-    // Set the authentication token into the SecurityContext
     SecurityContextHolder.getContext().setAuthentication(token);
   }
+
 }

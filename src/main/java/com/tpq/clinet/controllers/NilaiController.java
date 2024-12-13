@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
+import com.tpq.clinet.models.Nilai;
 import com.tpq.clinet.services.NilaiService;
 
 import org.springframework.security.core.Authentication;
@@ -28,5 +29,16 @@ public class NilaiController {
     public String detailPage(Model model, Authentication auth) {
         model.addAttribute("role", auth.getAuthorities());
         return "nilai/detail";
+    }
+
+    @GetMapping("/create")
+    public String create(Model model) {
+        model.addAttribute("nilai", nilaiService.getAll());
+        return "nilai/create";
+    }
+
+    @GetMapping("/update")
+    public String detail(Nilai nilai, Model model) {
+        return "nilai/update";
     }
 }

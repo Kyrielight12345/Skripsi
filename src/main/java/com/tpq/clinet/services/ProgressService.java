@@ -16,14 +16,24 @@ import com.tpq.clinet.models.Progress;
 @Service
 public class ProgressService {
     @Value("${server.base.url}/progress")
-    private String url;
+    private String baseUrl;
 
     @Autowired
     private RestTemplate restTemplate;
 
+    private String adjustUrl(String endpoint) {
+        if (endpoint == null || endpoint.isEmpty()) {
+            return baseUrl;
+        }
+        if (endpoint.startsWith("/")) {
+            return baseUrl.concat(endpoint);
+        }
+        return baseUrl + "/" + endpoint;
+    }
+
     public List<Progress> getAll() {
         return restTemplate.exchange(
-                url,
+                adjustUrl(""),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Progress>>() {
@@ -33,7 +43,7 @@ public class ProgressService {
 
     public Progress getById(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.GET,
                 null, Progress.class,
                 id)
@@ -42,7 +52,7 @@ public class ProgressService {
 
     public Progress create(Progress progress) {
         return restTemplate.exchange(
-                url,
+                adjustUrl("create"),
                 HttpMethod.POST,
                 new HttpEntity<>(progress), Progress.class)
                 .getBody();
@@ -50,7 +60,7 @@ public class ProgressService {
 
     public Progress update(Integer id, Progress progress) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.PUT,
                 new HttpEntity<>(progress),
                 Progress.class)
@@ -59,7 +69,7 @@ public class ProgressService {
 
     public Progress delete(Integer id) {
         return restTemplate.exchange(
-                url.concat("/" + id),
+                adjustUrl(String.valueOf(id)),
                 HttpMethod.DELETE,
                 null,
                 Progress.class)
@@ -68,7 +78,7 @@ public class ProgressService {
 
     public List<Progress> getBySantri(Integer santriId) {
         return restTemplate.exchange(
-                url.concat("/santri/" + santriId),
+                adjustUrl("/santri/" + santriId),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Progress>>() {
@@ -78,7 +88,7 @@ public class ProgressService {
 
     public Map<Integer, List<Progress>> getAllGroupedBySantri() {
         return restTemplate.exchange(
-                url.concat("/santri"),
+                adjustUrl("santri"),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<Map<Integer, List<Progress>>>() {
