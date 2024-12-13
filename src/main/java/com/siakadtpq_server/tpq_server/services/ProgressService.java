@@ -59,13 +59,6 @@ public class ProgressService {
         return progressRepository.findBySantri(santri);
     }
 
-    // public Map<Integer, List<Progress>> getAllGroupedBySantri() {
-    // List<Progress> allProgress = progressRepository.findAll();
-
-    // return allProgress.stream()
-    // .collect(Collectors.groupingBy(p -> p.getSantri().getId()));
-    // }
-
     public Map<Integer, List<Progress>> getAllGroupedBySantri() {
         User currentUser = getCurrentUser();
 

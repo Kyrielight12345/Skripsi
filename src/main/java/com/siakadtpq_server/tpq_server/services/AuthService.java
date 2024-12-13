@@ -25,32 +25,42 @@ public class AuthService {
         private AppUserDetailService appUserDetailService;
 
         public LoginResponse login(LoginRequest loginRequest) {
+                // Create an authentication token
                 UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(
                                 loginRequest.getUsername(),
                                 loginRequest.getPassword());
 
+                // Authenticate the user
                 Authentication auth = authenticationManager.authenticate(authReq);
                 SecurityContextHolder.getContext().setAuthentication(auth);
 
+                // Fetch the user from the repository
                 User user = usersRepository
                                 .findByUsername(loginRequest.getUsername())
                                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
+                // Load user details
                 appUserDetailService.loadUserByUsername(loginRequest.getUsername());
 
+                // Get the related entity (Santri or Pengajar)
                 Object relatedEntity = user.getRelatedEntity();
 
+                // Create a new login response
                 LoginResponse loginResponse = new LoginResponse();
                 loginResponse.setUsername(user.getUsername());
                 loginResponse.setRole(user.getRole());
 
+                // Set the related entity and its ID based on the role
                 if (relatedEntity instanceof Santri) {
-                        loginResponse.setSantri((Santri) relatedEntity);
+                        Santri santri = (Santri) relatedEntity;
+                        loginResponse.setSantri(santri);
+                        loginResponse.setId(santri.getId()); // Set the Santri's ID
                 } else if (relatedEntity instanceof Pengajar) {
-                        loginResponse.setPengajar((Pengajar) relatedEntity);
+                        Pengajar pengajar = (Pengajar) relatedEntity;
+                        loginResponse.setPengajar(pengajar);
+                        loginResponse.setId(pengajar.getId()); // Set the Pengajar's ID
                 }
 
                 return loginResponse;
         }
-
 }

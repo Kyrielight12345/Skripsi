@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class LoginResponse {
     private String username;
     private String role;
+    private Integer id;
     private Santri santri;
     private Pengajar pengajar;
-
 }
