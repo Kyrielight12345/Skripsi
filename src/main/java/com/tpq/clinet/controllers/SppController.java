@@ -31,6 +31,12 @@ public class SppController {
         return "spp/detail";
     }
 
+    @GetMapping("/detail-ortu")
+    public String detailPageortu(Model model, Authentication auth) {
+        model.addAttribute("role", auth.getAuthorities());
+        return "spp/detail-ortu";
+    }
+
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("progress", sppService.getAll());

@@ -201,7 +201,7 @@ function beforeUpdate(id) {
       $("#create-bayar").val(data.tanggal_bayar);
       $("#create-bulan").val(data.bayar_bulan);
       $("#create-tahun").val(data.bayar_tahun);
-      $("#create-santri").val(data.santri.id);
+      $("#edit-santri").val(data.santri.id);
       $("#create-spp-id").val(data.id);
     },
     error: function (err) {
@@ -411,7 +411,7 @@ $("#edit-spp").on("submit", (event) => {
     jumlah_bayar: 10000,
     bayar_bulan: $("#create-bulan").val(),
     bayar_tahun: $("#create-tahun").val(),
-    santri: { id: $("#create-santri").val() },
+    santri: { id: $("#edit-santri").val() },
     pengajar: { id: 1 },
   };
 

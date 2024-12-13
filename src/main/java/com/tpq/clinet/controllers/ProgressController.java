@@ -31,6 +31,12 @@ public class ProgressController {
         return "progress/detail";
     }
 
+    @GetMapping("/detail-ortu")
+    public String detailPageOrtu(Model model, Authentication auth) {
+        model.addAttribute("role", auth.getAuthorities());
+        return "progress/detail-ortu";
+    }
+
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("progress", progressService.getAll());

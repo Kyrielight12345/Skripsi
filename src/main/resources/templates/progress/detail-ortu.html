@@ -1,0 +1,44 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main.html}">
+
+<body>
+    <section layout:fragment="content">
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Detail Progress </h3>
+                <span id="role" th:data-role="${role}"></span>
+            </div>
+            <div class="page-content">
+                <section class="row">
+                    <br>
+                    <div class="table-responsive justify-content-center text-center">
+                        <table id="tabel-detail-progress-ortu"
+                            class=" table border-0 star-student table-hover table-center mb-3 datatable striped">
+                            <thead class="student-thread text-center">
+                                <tr>
+                                    <th class="col-1 text-center">No</th>
+                                    <th class="col-3 text-center">Tanggal</th>
+                                    <th class="col-3 text-center">Halaman</th>
+                                    <th class="col-3 text-center">Keterangan</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </section>
+    <div layout:fragment="js">
+        <script th:src="@{/js/ortu.js}"></script>
+    </div>
+
+
+</body>
+
+</html>

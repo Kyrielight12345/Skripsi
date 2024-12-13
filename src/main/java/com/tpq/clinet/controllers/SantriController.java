@@ -35,6 +35,11 @@ public class SantriController {
         return "santri/detail";
     }
 
+    @GetMapping("/detail_ortu")
+    public String detailortu(Santri santri, Model model) {
+        return "santri/detailOrtu";
+    }
+
     @GetMapping("/update")
     public String update(Santri santri, Model model) {
         return "santri/update";

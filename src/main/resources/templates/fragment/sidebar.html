@@ -27,10 +27,16 @@
                     </a>
                 </li>
                 <li class="sidebar-item ">
-                    <a th:href="@{/santri}" class="sidebar-link">
+                    <a sec:authorize="hasAnyRole('KEPALA','PENGAJAR')" th:href="@{/santri}" class="sidebar-link">
                         <i class="bi bi-stack"></i>
                         <span>Santri</span>
                     </a>
+                    <a sec:authorize="hasRole('SANTRI')" id="santriLink" th:href="@{/santri/detail}"
+                        class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>Santri</span>
+                    </a>
+
                     <a sec:authorize="hasRole('KEPALA')" th:href="@{/pengajar}" class="sidebar-link">
                         <i class="bi bi-stack"></i>
                         <span>Pengajar</span>
@@ -48,22 +54,41 @@
                         <span>Jilid</span>
                     </a>
 
-                    <a th:href="@{/progress}" class="sidebar-link">
+                    <a sec:authorize="hasAnyRole('KEPALA','PENGAJAR')" th:href="@{/progress}" class="sidebar-link">
                         <i class="bi bi-stack"></i>
                         <span>Progress</span>
                     </a>
-                    <a th:href="@{/spp}" class="sidebar-link">
+                    <a sec:authorize="hasRole('SANTRI')" id="progressLink" th:href="@{/progress/detail-ortu}"
+                        class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>Progress</span>
+                    </a>
+                    <a sec:authorize="hasAnyRole('KEPALA','PENGAJAR')" th:href="@{/spp}" class="sidebar-link">
                         <i class="bi bi-stack"></i>
                         <span>Spp</span>
                     </a>
-                    <a th:href="@{/nilai}" class="sidebar-link">
+                    <a sec:authorize="hasRole('SANTRI')" id="sppLink" th:href="@{/spp/detail-ortu}"
+                        class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>SPP</span>
+                    </a>
+                    <a sec:authorize="hasAnyRole('KEPALA','PENGAJAR')" th:href="@{/nilai}" class="sidebar-link">
                         <i class="bi bi-stack"></i>
                         <span>Nilai</span>
                     </a>
-                    <!-- <a th:href="@{/user}" class="sidebar-link">
+                    <a sec:authorize="hasRole('SANTRI')" id="nilaiLink" th:href="@{/nilai/detail-ortu}"
+                        class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>Nilai</span>
+                    </a>
+                    <a sec:authorize="hasRole('KEPALA')" th:href="@{/user}" class="sidebar-link">
                         <i class="bi bi-stack"></i>
                         <span>User</span>
-                    </a> -->
+                    </a>
+                    <a sec:authorize="hasRole('KEPALA')" th:href="@{/laporan}" class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>Laporan</span>
+                    </a>
                     <!-- <form action="#" th:action="@{/logout}" method="post" class="d-inline">
                         <button type="submit" class="sidebar-link btn btn-link"
                             style="border: none; background: none; padding: 0;">

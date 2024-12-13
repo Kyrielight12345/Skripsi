@@ -31,6 +31,12 @@ public class NilaiController {
         return "nilai/detail";
     }
 
+    @GetMapping("/detail-ortu")
+    public String detailPageortu(Model model, Authentication auth) {
+        model.addAttribute("role", auth.getAuthorities());
+        return "nilai/detail-ortu";
+    }
+
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("nilai", nilaiService.getAll());

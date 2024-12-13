@@ -55,11 +55,8 @@
                                             <input type="text" id="create-tahun" name="halaman" class="form-control"
                                                 placeholder="Masukan bulan" required />
                                         </div>
-                                        <div class="col-md-4">
-                                            <label for="create-santri" class="form-label">Santri</label>
-                                            <select id="create-santri" name="santri" class="form-control" required>
-                                            </select>
-                                        </div>
+                                        <input type="hidden" id="edit-santri" name="tanggal_Ujian" class="form-control"
+                                            required />
                                         <div class="col-md-4">
                                             <input type="hidden" id="create-role" name="role" class="form-control"
                                                 th:value="${role}" readonly />

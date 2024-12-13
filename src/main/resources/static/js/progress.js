@@ -262,7 +262,7 @@ $("#edit-progress").on("submit", (event) => {
     keterangan: $("#create-keterangan").val(),
     halaman: $("#create-halaman").val(),
     santri: {
-      id: $("#create-santri").val(),
+      id: $("#edit-santri").val(),
     },
     pengajar: {
       id: 1,
@@ -310,7 +310,8 @@ function beforeUpdate(id) {
       $("#create-tanggal").val(data.tanggal_progress);
       $("#create-keterangan").val(data.keterangan);
       $("#create-halaman").val(data.halaman);
-      $("#create-santri").val(data.santri.id);
+      $("#edit-santri").val(data.santri.id);
+      $("#create-progress-id").val(data.id);
     },
     error: function (err) {
       console.log(err);
