@@ -43,6 +43,7 @@ public class User {
     @JsonProperty(access = Access.WRITE_ONLY)
     private Pengajar pengajar;
 
+    @JsonProperty("relatedEntity")
     public Object getRelatedEntity() {
         if ("santri".equals(role)) {
             return santri;

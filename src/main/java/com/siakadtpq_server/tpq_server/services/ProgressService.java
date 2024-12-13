@@ -30,7 +30,17 @@ public class ProgressService {
     private final SantriRepository santriRepository;
 
     public List<Progress> getAll() {
-        return progressRepository.findAll();
+        User currentUser = getCurrentUser();
+        if ("santri".equals(currentUser.getRole())) {
+            Santri santri = currentUser.getSantri();
+            if (santri != null) {
+                return progressRepository.findBySantri(santri);
+            } else {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Santri tidak ditemukan untuk user ini!");
+            }
+        } else {
+            return progressRepository.findAll();
+        }
     }
 
     public Progress getById(Integer id) {

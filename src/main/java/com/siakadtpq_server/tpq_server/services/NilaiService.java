@@ -30,7 +30,17 @@ public class NilaiService {
     private final SantriRepository santriRepository;
 
     public List<Nilai> getAll() {
-        return nilaiRepository.findAll();
+        User currentUser = getCurrentUser();
+        if ("santri".equals(currentUser.getRole())) {
+            Santri santri = currentUser.getSantri();
+            if (santri != null) {
+                return nilaiRepository.findBySantri(santri);
+            } else {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Santri tidak ditemukan untuk user ini!");
+            }
+        } else {
+            return nilaiRepository.findAll();
+        }
     }
 
     public Nilai getById(Integer id) {

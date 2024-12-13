@@ -30,12 +30,38 @@ public class UserService {
     }
 
     public User update(Integer id, User user) {
-        getById(id);
+        // Ensure the user exists in the database
+        User existingUser = getById(id); // This can be an existing method to fetch the user by id.
+
+        // Set the id for the user being updated
         user.setId(id);
-        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        // Update username if provided
+        if (user.getUsername() != null && !user.getUsername().isEmpty()) {
+            existingUser.setUsername(user.getUsername());
         }
-        return userRepository.save(user);
+
+        // Update password if provided
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            existingUser.setPassword(passwordEncoder.encode(user.getPassword())); // Password encryption
+        }
+
+        // Update role if provided
+        if (user.getRole() != null && !user.getRole().isEmpty()) {
+            existingUser.setRole(user.getRole());
+        }
+
+        // Update related entities (Santri or Pengajar) based on the role if provided
+        if (user.getRole() != null) {
+            if ("santri".equals(user.getRole()) && user.getSantri() != null) {
+                existingUser.setSantri(user.getSantri());
+            } else if ("pengajar".equals(user.getRole()) && user.getPengajar() != null) {
+                existingUser.setPengajar(user.getPengajar());
+            }
+        }
+
+        // Save the updated user
+        return userRepository.save(existingUser);
     }
 
     public User delete(Integer id) {
